@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Records - DESI CHAI</title>
+    <style>
+        body {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        #nav1 {
+            background-color: white;
+            height: 3cm;
+            font-size: 0.5cm;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            color: #672717;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1cm;
+        }
+
+        #nav1 img {
+            width: 3.5cm;
+            height: 3cm;
+        }
+
+        .login-container {
+            display: flex;
+            gap: 1cm;
+        }
+
+        .login-links {
+            text-decoration: none;
+            color: #672717;
+        }
+
+        .login-links:hover {
+            text-decoration: underline;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2cm;
+            padding-top: 2cm;
+            padding-bottom: 2cm;
+        }
+
+        #records-title {
+            font-size: 1cm;
+            font-family: "Montserrat", Sans-serif;
+            color: #672717;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        #records-title::before,
+        #records-title::after {
+            content: "";
+            flex: 1;
+            height: 2px;
+            background: #672717;
+            margin: 0 10px;
+        }
+
+        .record-item {
+            font-size: 1cm;
+            margin: 10px 0;
+        }
+
+        .total-sale, .total-orders {
+            font-size: 1cm;
+            margin-top: 20px;
+            font-weight: bold;
+            color: #672717;
+        }
+
+        .team-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2cm;
+            padding: 2cm;
+            background-color: white;
+            margin-bottom: 2cm;
+        }
+
+        .team-member {
+            width: 10cm;
+            height:8cm; 
+            text-align: center;
+            border: 2px solid #672717;
+            border-radius: 8px;
+            padding: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        .team-member img {
+            width: 100%; /* Adjust width */
+            height: 100%; /* Adjust height */
+            object-fit: cover;
+            border-bottom: 2px solid #672717;
+        }
+    </style>
+</head>
+<body>
+    <div id="nav1">
+        <img src="chai.png" alt="Logo">
+        <div class="login-container">
+            <a href="desichai.html" class="login-links">HOME</a>
+            <a href="menu2.html" class="login-links">MENU</a>
+            <a href="franchise.html" class="login-links">FRANCHISE</a>
+            <a href="aboutus.html" class="login-links">ABOUT US</a>
+            <a href="record.html" class="login-links">RECORDS</a>
+        </div>
+    </div>
+
+    <div class="team-section">
+        <div class="team-member">
+            <img src="founder.jpg" alt="Founder">
+        </div>
+        <div class="team-member">
+            <img src="team1.png" alt="Team Member 1">
+        </div>
+        <div class="team-member">
+            <img src="team2.png" alt="Team Member 2">
+        </div>
+        <!-- Add more team members as needed -->
+    </div>
+
+    <center>
+        <div id="records-title">
+            RECORDS
+        </div>
+    </center>
+
+    <div class="content">
+        <div id="records"></div>
+        <div id="total-orders" class="total-orders"></div>
+        <div id="total-sale" class="total-sale"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const quantities = JSON.parse(localStorage.getItem('quantities')) || [];
+            const recordsDiv = document.getElementById('records');
+            let totalSale = 0;
+            let totalOrders = 0;
+
+            const prices = {
+                "Chai": 15,
+                "Coffee": 15,
+                "Idli Plate (2 pieces)": 20,
+                "Medu Vada (2 pieces)": 30,
+                "Combo": 50
+            };
+
+            const totalQuantities = {
+                "Chai": 0,
+                "Coffee": 0,
+                "Idli Plate (2 pieces)": 0,
+                "Medu Vada (2 pieces)": 0,
+                "Combo": 0
+            };
+
+            quantities.forEach(({ item, quantity }) => {
+                totalQuantities[item] += parseInt(quantity);
+                totalSale += prices[item] * quantity;
+                totalOrders += parseInt(quantity);
+            });
+
+            for (const [item, quantity] of Object.entries(totalQuantities)) {
+                const recordItem = document.createElement('div');
+                recordItem.className = 'record-item';
+                recordItem.textContent = `${item}: ${quantity}`;
+                recordsDiv.appendChild(recordItem);
+            }
+
+            const totalOrdersDiv = document.getElementById('total-orders');
+            totalOrdersDiv.textContent = `Total Orders: ${totalOrders}`;
+
+            const totalSaleDiv = document.getElementById('total-sale');
+            totalSaleDiv.textContent = `Total Sale: Rs ${totalSale}`;
+        });
+    </script>
+</body>
+</html>

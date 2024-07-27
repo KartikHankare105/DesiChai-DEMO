@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Records - DESI CHAI</title>
+    <style>
+        body {
+            font-family: "Montserrat", sans-serif;
+            color: #672717;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .record-item {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #672717;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+        .total-sale {
+            margin-top: 20px;
+            padding: 10px;
+            border: 2px solid #672717;
+            border-radius: 5px;
+            background-color: #fff;
+            font-weight: bold;
+            text-align: center;
+        }
+        #nav1 {
+            height: 2.5cm;
+            font-size: 0.5cm;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            color: #672717;;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1cm;
+        }
+
+        #nav1 img {
+            width: 3.5cm;
+            height: 3cm;
+        }
+
+        .login-container {
+            display: flex;
+            gap: 1cm;
+        }
+
+        .login-links {
+            text-decoration: none;
+            color: #672717;;
+        }
+
+        .login-links:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div id="nav1">
+        <img src="chai.png" alt="Logo">
+        <div class="login-container">
+            <a href="desichai.html" class="login-links">HOME</a>
+            <a href="menu2.html" class="login-links">MENU</a>
+            <a href="franchise.html" class="login-links">FRANCHISE</a>
+            <a href="aboutus.html" class="login-links">ABOUT US</a>
+            <a href="record.html" class="login-links">RECORDS</a>
+        </div>
+    </div><br><br>
+    <h1>Total-Bill</h1>
+    <div id="records"></div>
+    <div id="total-sale" class="total-sale"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const quantities = JSON.parse(localStorage.getItem('quantities')) || [];
+            const recordsDiv = document.getElementById('records');
+            let totalSale = 0;
+
+            const prices = {
+                "Chai": 15,
+                "Coffee": 15,
+                "Idli Plate (2 pieces)": 20,
+                "Medu Vada (2 pieces)": 30,
+                "Combo": 50
+            };
+
+            quantities.forEach(({ item, quantity }) => {
+                const recordItem = document.createElement('div');
+                recordItem.className = 'record-item';
+                recordItem.textContent = `${item}: ${quantity}`;
+                recordsDiv.appendChild(recordItem);
+
+                totalSale += prices[item] * quantity;
+            });
+
+            const totalSaleDiv = document.getElementById('total-sale');
+            totalSaleDiv.textContent = `Total Sale: Rs ${totalSale}`;
+        });
+    </script>
+</body>
+</html>

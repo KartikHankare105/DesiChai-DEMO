@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>www.desichai.com</title>
+    <style>
+        body {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        #nav1 {
+            background-color: white;
+            height: 3cm;
+            font-size: 0.5cm;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            color: #672717;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1cm;
+        }
+
+        #nav1 img {
+            width: 3.5cm;
+            height: 3cm;
+        }
+
+        .login-container {
+            display: flex;
+            gap: 1cm;
+        }
+
+        .login-links {
+            text-decoration: none;
+            color: #672717;
+        }
+
+        .login-links:hover {
+            text-decoration: underline;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2cm;
+            padding-top: 2cm;
+            padding-bottom: 2cm;
+        }
+
+        #menu-title {
+            font-size: 1cm;
+            font-family: "Montserrat", Sans-serif;
+            color: #672717;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        #menu-title::before,
+        #menu-title::after {
+            content: "";
+            flex: 1;
+            height: 2px;
+            background: #672717;
+            margin: 0 10px;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 1cm;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 800px;
+        }
+
+        .menu-item img {
+            width: 150px;
+            height: 150px;
+            margin-right: 2cm;
+            border-radius: 10px;
+        }
+
+        .menu-item .details {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
+        .menu-item .details h3 {
+            margin: 0;
+            color: #672717;
+            font-size: 1.3cm;
+        }
+
+        .menu-item .details p {
+            margin: 0;
+            color: brown;
+            font-size: 0.7cm;
+        }
+
+        .quantity-container {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .quantity-input {
+            width: 60px;
+            height: 30px;
+            padding: 5px;
+            font-size: 16px;
+            margin-left: 10px;
+            border: 1px solid #672717;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .plus-button {
+            width: 30px;
+            height: 30px;
+            margin-left: 10px;
+            background-color: #672717;
+            color: white;
+            font-size: 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .plus-button:hover {
+            background-color: #905050;
+        }
+
+        .save-button {
+            display: block;
+            width: 150px;
+            height: 40px;
+            margin: 20px auto;
+            background-color: #672717;
+            color: white;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .save-button:hover {
+            background-color: #905050;
+        }
+    </style>
+</head>
+<body>
+    <div id="nav1">
+        <img src="chai.png" alt="Logo">
+        <div class="login-container">
+            <a href="desichai.html" class="login-links">HOME</a>
+            <a href="menu2.html" class="login-links">MENU</a>
+            <a href="franchise.html" class="login-links">FRANCHISE</a>
+            <a href="aboutus.html" class="login-links">ABOUT US</a>
+            <a href="record.html" class="login-links">RECORDS</a>
+        </div>
+    </div>
+    <br><br>
+    <center>
+        <div id="menu-title">
+            MENU
+        </div>
+    </center>
+
+    <div class="content">
+        <div class="menu-item">
+            <img src="chai.jpg" alt="Chai">
+            <div class="details">
+                <h3>Chai</h3>
+                <p>Rs 15</p>
+                <div class="quantity-container">
+                    <input type="number" class="quantity-input" data-item="Chai" min="0" value="0">
+                    <button class="plus-button" onclick="incrementQuantity(this)">+</button>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item">
+            <img src="coffee.jpg" alt="Coffee">
+            <div class="details">
+                <h3>Coffee</h3>
+                <p>Rs 15</p>
+                <div class="quantity-container">
+                    <input type="number" class="quantity-input" data-item="Coffee" min="0" value="0">
+                    <button class="plus-button" onclick="incrementQuantity(this)">+</button>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item">
+            <img src="idli.jpg" alt="Idli">
+            <div class="details">
+                <h3>Idli Plate (2 pieces)</h3>
+                <p>Rs 20</p>
+                <div class="quantity-container">
+                    <input type="number" class="quantity-input" data-item="Idli Plate (2 pieces)" min="0" value="0">
+                    <button class="plus-button" onclick="incrementQuantity(this)">+</button>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item">
+            <img src="meduvada.jpg" alt="Medu Vada">
+            <div class="details">
+                <h3>Medu Vada (2 pieces)</h3>
+                <p>Rs 30</p>
+                <div class="quantity-container">
+                    <input type="number" class="quantity-input" data-item="Medu Vada (2 pieces)" min="0" value="0">
+                    <button class="plus-button" onclick="incrementQuantity(this)">+</button>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item">
+            <img src="combo.jpg" alt="Combo">
+            <div class="details">
+                <h3>Combo</h3>
+                <p>Rs 50 (1 Medu Vada, 2 Idli, Chai)</p>
+                <div class="quantity-container">
+                    <input type="number" class="quantity-input" data-item="Combo" min="0" value="0">
+                    <button class="plus-button" onclick="incrementQuantity(this)">+</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="save-button" onclick="saveQuantities()">Save</button>
+
+    <script>
+        function incrementQuantity(button) {
+            const input = button.previousElementSibling;
+            input.value = parseInt(input.value || "0") + 1;
+        }
+
+        function saveQuantities() {
+            const quantities = [];
+            document.querySelectorAll('.quantity-input').forEach(input => {
+                const item = input.getAttribute('data-item');
+                const quantity = input.value;
+                quantities.push({ item, quantity });
+                input.value = 0; // Reset the quantity to zero
+            });
+            localStorage.setItem('quantities', JSON.stringify(quantities));
+            alert('Quantities saved and reset!');
+            window.location.href = "record.html"; // Redirect to record.html
+        }
+    </script>
+</body>
+</html>
